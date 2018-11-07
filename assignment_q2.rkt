@@ -26,12 +26,8 @@
   )
 )
 
-(define (tail el lst)
-  (count_instances_tr el lst 0))
-
-(define (count_instances_tr el lst)
-  (count_instances_tr el lst 0))
-(define (count_instances_tr_total el lst total) 
+(define (running_total el lst) (count_instances_tr el lst 0))
+(define (count_instances_tr el lst total) ; 
   (cond [(empty? lst) total]
     [(equal? (car lst) el) (count_instances_tr el (cdr lst) (+ 1 total))]
     [else (count_instances_tr el (cdr lst) total)]))
@@ -62,7 +58,7 @@
 (count_instances 'a '(a b c d a f a))
 
 (display "Test for count_instances_tr:\n")
-(count_instances_tr 'a '(a b c d a f a))
+(running_total 'a '(a b c d a f a))
 
 (display "Test for count_instances_deep:\n")
 (count_instances_deep 'a '( a b c '(a b a) c))
